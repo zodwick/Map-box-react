@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './App.css';
 
-
+import { Crud } from './crud';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhcGFub3NraSIsImEiOiJjbGVxMjhjbmowaTZpNDVvNWQ4NTBsc2JtIn0.LFIPoIEmYQJv5bfRPueMQQ';
 
@@ -24,4 +24,11 @@ function Map() {
   return <div id='map' className='map-container' />;
 
   }
-export default Map;
+
+  function App() {
+    return (
+        <Crud />
+    );
+    }
+    
+    export default Map;
