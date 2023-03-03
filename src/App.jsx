@@ -44,7 +44,8 @@ function Map() {
 
       new mapboxgl.Marker().setLngLat([76.3289828,10.0298734]).addTo(map);
       const markers = cordinaates.map((cordinaate) => {
-        return new mapboxgl.Marker().setLngLat(cordinaate).addTo(map);
+        return (new mapboxgl.Marker().setLngLat(cordinaate).addTo(map)
+        );
         // mapboxgl.Marker().setpopup(new mapboxgl.Popup().setHTML('<h1>Hello World!</h1>')).addTo(map);
       });
 
