@@ -2,11 +2,19 @@
 
 .map-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  
-  height: 70%;
-  width: 80%;
+  height: 40rem;
+  width: 40rem;
 }
+
+
+.addDistress{
+  position: absolute;
+  left: 50rem;
+  margin: 12px;
+  background-color: #404040;
+  color: #ffffff;
+  padding: 6px;
+  font-weight: bold;
+}
+
+

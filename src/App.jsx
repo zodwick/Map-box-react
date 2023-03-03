@@ -1,14 +1,37 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './App.css';
 
-import { Crud } from './crud';
+
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhcGFub3NraSIsImEiOiJjbGVxMjhjbmowaTZpNDVvNWQ4NTBsc2JtIn0.LFIPoIEmYQJv5bfRPueMQQ';
 
+
+
+
+
 function Map() {
-  
+
+
+  function saveLocationData () {
+    let longitude,latitude
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            latitude=position.coords.latitude,
+            longitude= position.coords.longitude
+            console.log(latitude,longitude)
+        }, error => {
+          console.log(error);
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    
+    
+    };
+    
+
     navigator.geolocation.getCurrentPosition(position => {
       const map = new mapboxgl.Map({
         container: 'map',
@@ -21,14 +44,16 @@ function Map() {
     });
   
 
-  return <div id='map' className='map-container' />;
+  return (
+    <>
+      <div id='map' className='map-container' ></div>
+      <button className='addDistress' onClick={saveLocationData}>h</button>
+
+    </>
+  );
+
 
   }
 
-  function App() {
-    return (
-        <Crud />
-    );
-    }
-    
+  
     export default Map;
