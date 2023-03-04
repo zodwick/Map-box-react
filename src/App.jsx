@@ -15,7 +15,7 @@ function Map() {
 
     // read mrkers data object
     let cordinaates =[[76.3289828 , 10.0298734],[76.3570,10.1004],[76.3125,10.0261]]
-
+    
     let longitude,latitude
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -37,16 +37,24 @@ function Map() {
     navigator.geolocation.getCurrentPosition(position => {
       const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
+        // style: 'mapbox://styles/mapbox/streets-v11',
+        style:'mapbox://styles/mapbox/dark-v11',
         center: [position.coords.longitude, position.coords.latitude],
-        zoom: 12
-      });
+        zoom: 12,
+        
+      })
 
-      new mapboxgl.Marker().setLngLat([76.3289828,10.0298734]).addTo(map);
+      const marker = new mapboxgl.Marker({
+        color: "#ff0000",
+        draggable: true
+        }).setLngLat( [position.coords.longitude, position.coords.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
+        .addTo(map);
+        console.log(marker.getPopup()); // return the popup instance
+
       const markers = cordinaates.map((cordinaate) => {
         return (new mapboxgl.Marker().setLngLat(cordinaate).addTo(map)
         );
-        // mapboxgl.Marker().setpopup(new mapboxgl.Popup().setHTML('<h1>Hello World!</h1>')).addTo(map);
       });
 
     });

@@ -1,53 +1,39 @@
-import mapboxgl from "mapbox-gl";
-import React, { useEffect, useRef ,useState } from "react";
-import ReactDOM from "react-dom";
-import geoJson from "./chicago-parks.json";
-import "./Map.css";
+import * as React from 'react';
+import Map from 'react-map-gl';
+import { useState } from 'react';
 
-mapboxgl.accessToken =
-'pk.eyJ1IjoiYWxhcGFub3NraSIsImEiOiJjbGVxMjhjbmowaTZpNDVvNWQ4NTBsc2JtIn0.LFIPoIEmYQJv5bfRPueMQQ';
+function Map2() {
 
+  const [lat, setLat] = useState(10.7);
+  const [lon, setLon] = useState(76.3125);
 
-function Map() {
-  const mapContainer = useRef(null);
-const map = useRef(null);
-const [lng, setLng] = useState(null);
-const [lat, setLat] = useState(null);
-const [zoom, setZoom] = useState(9);
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(position => {
-      setLat(position.coords.latitude)
-      setLng(position.coords.longitude)
-      console.log(lat,lng)
-      
-          
-
-  }, error => {
-    console.log(error);
-  });
-} else {
-  console.log("Geolocation is not supported by this browser.");
-}
-
-if (lat!=null){
-useEffect(() => {
-  if (map.current) return; // initialize map only once
-  map.current = new mapboxgl.Map({
-  container: mapContainer.current,
-  style: 'mapbox://styles/mapbox/streets-v12',
-  center: [lng, lat],
-  zoom: zoom
-  });
-  });}
-
-
-
+   var longitude,latitude
+      // if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+             latitude=position.coords.latitude;
+            setLat(latitude);
+            longitude= position.coords.longitude;
+            setLon(longitude);});
+            // console.log(latitude,longitude);
+      //   }, error => {
+      //     console.log(error);
+      //   });
+      // } else {
+      //   console.log("Geolocation is not supported by this browser.");
+      // }
+      console.log(lat,lon);
   return (
-    <div>
-    <div ref={mapContainer} className="map-container" />
-    </div>
-    );
+    <Map
+      
+      initialViewState={{
+        longitude: lon,
+        latitude: lat,
+        zoom: 140
+      }}
+      style={{width: 600, height: 400}}
+      mapStyle="mapbox://styles/mapbox/streets-v9"
+    />
+  );
 }
 
-export default Map;
+export  default  Map2;
