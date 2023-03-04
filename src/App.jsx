@@ -11,7 +11,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhcGFub3NraSIsImEiOiJjbGVxMjhjbmowaTZpNDVvN
 
 
 function Map() {
-ss
+
 
     // read mrkers data object
     let cordinaates =[[76.3289828 , 10.0298734],[76.3570,10.1004],[76.3125,10.0261]]
